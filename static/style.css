@@ -1,0 +1,41 @@
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
+}
+
+.card-body {
+    display: flex;
+    align-items: flex-start;
+}
+
+.like-button-container {
+    flex: 0 0 auto; /* Prevent button from growing or shrinking */
+    margin-right: 15px; /* Adjust spacing as needed */
+}
+
+.like-btn {
+    font-size: 24px; /* Adjust size as needed */
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #007bff; /* Adjust color to fit your design */
+}
+
+.post-content {
+    flex: 1; /* Allow content to take up the remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title a {
+    text-decoration: none;
+}
+
+.card-text {
+    margin-bottom: 0.5rem; /* Adjust spacing if needed */
+}
+
