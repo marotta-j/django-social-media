@@ -86,6 +86,8 @@ def create_post(request):
 @login_required(login_url="/login")
 def post_view(request, id):
     post = Post.objects.filter(id=id).first()
+    if post is None:
+        return render(request, "main/post_view.html", {'post': None, 'form': None, 'comments': None})
     if request.method == "POST":
         if 'post-id' in request.POST:
             post_id = request.POST.get("post-id")
@@ -141,6 +143,12 @@ def profile_view(request, name):
             post = Post.objects.filter(id=post_id).first()
             if post and post.author == request.user:
                 post.delete()
+        elif 'profile-id' in request.POST:
+            profile_id = request.POST.get("profile-id")
+            profile = Profile.objects.filter(id=profile_id).first()
+            if profile and profile.author == request.user:
+                u = User.objects.get(username=profile.author)
+                u.delete()
 
         redirect(f'/profile/{name}')
 

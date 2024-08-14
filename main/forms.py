@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Post, Comment, Profile
 
 class RegistrationForm(UserCreationForm):
+    usable_password = None  # Don't ask about Password-based authentication
     email = forms.EmailField(required=True)
 
     class Meta:
