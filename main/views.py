@@ -5,14 +5,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Profile, User, Like
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count, Sum
-from datetime import datetime
 # Create your views here.
 
 @login_required(login_url="/login")
 def home(request):
-    #Profile.objects.all().delete()
-    #Comment.objects.all().delete()
-
     if request.method == "POST":
         if "post-id" in request.POST:
             post_id = request.POST.get("post-id")
@@ -20,7 +16,7 @@ def home(request):
             if post and post.author == request.user:
                 post.delete()
 
-
+    # Get the requesting user's profile (to access their following list)
     profile = Profile.objects.filter(author=request.user).first()
 
     # Order the posts by newest first
@@ -49,7 +45,7 @@ def like_post(request):
 
 def sign_up(request):
     if request.method == "POST":
-        form = RegistrationForm(request.POST) # this connects to the form we made
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -61,7 +57,7 @@ def sign_up(request):
 
     return render(request, 'registration/sign_up.html',  {'form':form})
 
-#@login_required(login_url="/login")
+
 def logout_view(request):
     if not request.user.is_authenticated:
         return redirect('/login')
@@ -90,7 +86,6 @@ def create_post(request):
 @login_required(login_url="/login")
 def post_view(request, id):
     post = Post.objects.filter(id=id).first()
-    # workout if post == None
     if request.method == "POST":
         if 'post-id' in request.POST:
             post_id = request.POST.get("post-id")

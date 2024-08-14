@@ -8,15 +8,11 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField('image', null=True, default=None, blank=True)
     description = models.TextField(max_length=255)
-    #comments = models.ForeignKey(Comment, on_delete=models.CASCADE, blank=True, null=True, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title + "\n" + self.description
-
-    def likeCount(self):
-        return self.like_set.count()
 
 class Like(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
