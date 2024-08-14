@@ -10,6 +10,10 @@ A social media website created with Django
 - User profiles with editable bio
 - Track followers and likes
 
+## Images
+![Example](image.png)
+![Example 2](image2.png)
+
 ## How to deploy it yourself
 1. Change the environment variables in `socialwebsite/settings.py`
 2. Change the database settings in `socialwebsite/settings.py` to where the DB will be hosted
