@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Profile, User, Like
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count, Sum
-# Create your views here.
+# Create your views here
 
 @login_required(login_url="/login")
 def home(request):
