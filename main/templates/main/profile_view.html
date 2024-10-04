@@ -12,10 +12,9 @@
                     <button type="button" class="btn btn-primary btn-group-vertical w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Change Bio
                     </button>
-                    <form method="POST" class="mt-2 btn-group-vertical w-100">
-                        {% csrf_token %}
-                        <button class="btn btn-danger" type="submit" name="profile-id" value="{{ profile.id }}">Delete Profile</button>
-                    </form>
+                    <button type="button" class="btn btn-danger btn-group-vertical w-100" data-bs-toggle="modal" data-bs-target="#warningModal">
+                        Delete Profile
+                    </button>
                 {% endif %}
                 {% if user not in profile.followers.all %}
                     <form method="POST" class="mt-2 btn-group-vertical w-100">
@@ -112,6 +111,28 @@
                     data-bs-dismiss="modal">
                     Save changes
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Warning Modal -->
+<div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="warningModalLabel">Delete Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1>Warning!</h1>
+                <h2>This will permanently delete your account and cannot be undone!</h2>
+            </div>
+            <div class="modal-footer">
+                <form method="POST" class="mt-2 btn-group-vertical w-100">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit" name="profile-id" value="{{ profile.id }}">Delete Profile</button>
+                </form>
             </div>
         </div>
     </div>
